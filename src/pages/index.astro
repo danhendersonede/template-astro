@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import StructuredData from '@/components/StructuredData.astro';
+import { siteConfig } from '@/config/site';
+---
+
+<Layout>
+  <StructuredData slot="head" type="website" />
+  <h1>Welcome to {siteConfig.name}</h1>
+  <p>{siteConfig.description}</p>
+  <div class="cta">
+    <a href="/about" class="button">Get Started</a>
+  </div>
+</Layout>
