@@ -3,6 +3,7 @@ import { siteConfig } from '@/config/site';
 import SkipLink from '@/components/layout/SkipLink.astro';
 import Nav from '@/components/layout/Nav.astro';
 import Footer from '@/components/layout/Footer.astro';
+import '@/styles/global.css';
 
 export interface Props {
   title?: string;
@@ -36,8 +37,32 @@ const pageDescription =
     <meta name="generator" content={Astro.generator} />
     <meta name="view-transition" content="same-origin" />
     <meta name="description" content={pageDescription} />
-    <meta name="theme-color" content="#000000" />
+    <meta
+      name="theme-color"
+      content="#000000"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0f172a"
+      media="(prefers-color-scheme: dark)"
+    />
     <title>{pageTitle}</title>
+    <!-- Prevent flash of unstyled content on theme -->
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== 'undefined' &&
+          localStorage.getItem('theme')
+        ) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+      })();
+      document.documentElement.dataset.theme = theme;
+    </script>
     <slot name="head" />
   </head>
   <body>
@@ -51,51 +76,3 @@ const pageDescription =
     <Footer />
   </body>
 </html>
-
-<style>
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    font-family: system-ui, sans-serif;
-    line-height: 1.6;
-    color: #333;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  main {
-    padding: 2rem;
-    width: 100%;
-    flex: 1;
-  }
-
-  /* Focus management */
-  *:focus-visible {
-    outline: 2px solid #4f46e5;
-    outline-offset: 2px;
-  }
-
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-</style>

@@ -39,50 +39,50 @@ const articles = getPublishedArticles(allArticles).slice(0, 3);
 <style>
   .hero {
     text-align: center;
-    padding: 4rem 1rem;
-    margin-bottom: 4rem;
+    padding: var(--space-section-gap) var(--space-4);
+    margin-bottom: var(--space-section-gap);
   }
 
   .hero-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #111827;
-    margin: 0 0 1rem 0;
-    line-height: 1.2;
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-4) 0;
+    line-height: var(--line-height-tight);
   }
 
   .hero-description {
-    font-size: 1.25rem;
-    color: #6b7280;
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
     max-width: 600px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: var(--line-height-relaxed);
   }
 
   .recent-articles {
-    margin-bottom: 4rem;
+    margin-bottom: var(--space-section-gap);
   }
 
   .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-8);
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: var(--space-4);
   }
 
   .section-header h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #111827;
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
     margin: 0;
   }
 
   .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 2rem;
+    gap: var(--space-8);
   }
 
   @media (min-width: 640px) {

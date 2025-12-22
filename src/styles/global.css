@@ -1,0 +1,308 @@
+/**
+ * Global Styles
+ * 
+ * Base styles that apply across the entire application.
+ * Component-specific styles remain in their respective .astro files.
+ */
+
+/* Define layer order - this controls cascade priority */
+@layer tokens, theme, base, utilities;
+
+/* Import design tokens and themes */
+@import './tokens.css';
+@import './theme-light.css';
+@import './theme-dark.css';
+
+/* ========================================
+ * CSS RESET & BASE STYLES
+ * ======================================== */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  html {
+    /* Smooth scrolling for same-page navigation, respecting motion preferences */
+    scroll-behavior: smooth;
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    /* Text size adjustments */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Color scheme hint for browser UI */
+    color-scheme: light dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ========================================
+   * TYPOGRAPHY
+   * ======================================== */
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-extrabold);
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h4 {
+    font-size: var(--font-size-xl);
+  }
+
+  h5 {
+    font-size: var(--font-size-lg);
+  }
+
+  h6 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* ========================================
+   * LINKS
+   * ======================================== */
+
+  a {
+    color: var(--color-text-link);
+    text-decoration-skip-ink: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a {
+      transition: var(--transition-colors);
+    }
+  }
+
+  a:hover,
+  a:focus {
+    color: var(--color-text-link-hover);
+  }
+
+  /* ========================================
+   * IMAGES & MEDIA
+   * ======================================== */
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  /* ========================================
+   * FORMS
+   * ======================================== */
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  /* ========================================
+   * CODE
+   * ======================================== */
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-family-mono);
+  }
+
+  code {
+    background-color: var(--color-bg-code);
+    color: var(--color-text-code);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+  }
+
+  pre {
+    background-color: var(--color-bg-code-block);
+    color: var(--color-text-inverted);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-loose);
+  }
+
+  pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  /* ========================================
+   * FOCUS STYLES
+   * ======================================== */
+
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* ========================================
+   * SELECTION
+   * ======================================== */
+
+  ::selection {
+    background-color: var(--color-primary-200);
+    color: var(--color-neutral-900);
+  }
+
+  [data-theme="dark"] ::selection {
+    background-color: var(--color-primary-700);
+    color: var(--color-neutral-50);
+  }
+
+  /* ========================================
+   * SCROLLBAR STYLING (optional, modern browsers)
+   * ======================================== */
+
+  @supports (scrollbar-width: thin) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-neutral-400) transparent;
+    }
+  }
+
+  /* ========================================
+   * REDUCED MOTION
+   * ======================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* End of @layer base */
+
+/* ========================================
+ * UTILITY CLASSES
+ * ======================================== */
+
+@layer utilities {
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Container utility */
+  .container {
+    width: 100%;
+    max-width: var(--max-width-container);
+    margin-inline: auto;
+    padding-inline: var(--space-container-padding);
+  }
+
+  .container--narrow {
+    max-width: var(--max-width-content);
+  }
+
+  .container--prose {
+    max-width: var(--max-width-prose);
+  }
+
+  /* Flow utility - consistent spacing between elements */
+  .flow > * + * {
+    margin-block-start: var(--flow-space, var(--space-6));
+  }
+
+  /* ========================================
+   * LAYOUT HELPERS
+   * ======================================== */
+
+  main {
+    flex: 1;
+    padding: var(--space-responsive-lg);
+    width: 100%;
+  }
+}
+
+/* End of @layer utilities */
