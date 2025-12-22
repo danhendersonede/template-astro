@@ -173,6 +173,65 @@ transition: var(--transition-colors);
 z-index: var(--z-modal);
 ```
 
+## Link Utility Classes
+
+We provide a comprehensive set of link utilities as the **single source of truth** for link styling. Use these instead of writing custom link styles in components.
+
+### Available Classes
+
+| Class                  | Purpose                            | Example                    |
+| ---------------------- | ---------------------------------- | -------------------------- |
+| `.link`                | Text links in content (underlined) | Article body links         |
+| `.link-nav`            | Navigation links (no underline)    | Header/footer nav items    |
+| `.link-button`         | Pill/button-shaped links           | Nav items with backgrounds |
+| `.link-inverted`       | Links on dark backgrounds          | Footer links               |
+| `.link-brand`          | Logo/site name links               | Header logo                |
+| `.link-brand-inverted` | Logo on dark backgrounds           | Footer logo                |
+| `.link-card`           | Full-card clickable wrapper        | Article cards              |
+| `.link-back`           | Arrow-prefixed navigation          | "← Back to articles"       |
+| `.link-cta`            | Call-to-action links               | "View all →"               |
+| `.link-external`       | Adds external arrow indicator      | Third-party links          |
+
+### Modifiers
+
+- `.active` - For current page indication (works with `.link-button`)
+
+### Usage Examples
+
+```astro
+<!-- Content link -->
+<a href="/about" class="link">Learn more</a>
+
+<!-- Navigation -->
+<a href="/articles" class="link-button active">Articles</a>
+
+<!-- Footer -->
+<a href="/privacy" class="link-inverted">Privacy Policy</a>
+
+<!-- Back navigation -->
+<a href="/articles" class="link-back">← Back to all articles</a>
+
+<!-- CTA link -->
+<a href="/articles" class="link-cta">View all articles</a>
+
+<!-- External link -->
+<a href="https://astro.build" class="link link-external" target="_blank"
+  >Astro</a
+>
+```
+
+### When to Use Component Styles Instead
+
+Use scoped component styles when:
+
+- The link has **unique visual treatment** not covered by utilities
+- The link requires **complex state management** (hover effects on parent elements)
+- The link is part of a **larger interactive pattern** (card hover states affecting title)
+
+### Motion Preferences
+
+All link utilities respect `prefers-reduced-motion` automatically. Transitions are only applied when motion is acceptable.
+
 ## Adding a New Theme
 
 To add a new theme (e.g., high contrast):

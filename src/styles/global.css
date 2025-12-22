@@ -273,6 +273,183 @@
     border-width: 0;
   }
 
+  /* ========================================
+   * LINK UTILITIES
+   * Single source of truth for link styles
+   * ======================================== */
+
+  /* Base interactive link - for text links in content */
+  .link {
+    color: var(--color-text-link);
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.15em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link {
+      transition: var(--transition-colors);
+    }
+  }
+
+  .link:hover,
+  .link:focus {
+    color: var(--color-text-link-hover);
+  }
+
+  /* Nav-style link - for navigation, no underline */
+  .link-nav {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link-nav {
+      transition: var(--transition-colors);
+    }
+  }
+
+  .link-nav:hover,
+  .link-nav:focus {
+    color: var(--color-interactive-primary);
+  }
+
+  /* Button-style link - for pill/button shaped links */
+  .link-button {
+    display: inline-block;
+    padding-block: var(--space-2);
+    padding-inline: var(--space-4);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-md);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link-button {
+      transition: var(--transition-all);
+    }
+  }
+
+  .link-button:hover,
+  .link-button:focus {
+    color: var(--color-interactive-primary);
+    background-color: var(--color-bg-hover);
+  }
+
+  .link-button.active {
+    color: var(--color-interactive-primary);
+    background-color: var(--color-bg-active);
+  }
+
+  /* Inverted context - for dark backgrounds (footer, etc.) */
+  .link-inverted {
+    color: var(--color-neutral-300);
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link-inverted {
+      transition: var(--transition-colors);
+    }
+  }
+
+  .link-inverted:hover,
+  .link-inverted:focus {
+    color: var(--color-interactive-secondary);
+  }
+
+  /* Brand link - for logos and site names */
+  .link-brand {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link-brand {
+      transition: var(--transition-colors);
+    }
+  }
+
+  .link-brand:hover,
+  .link-brand:focus {
+    color: var(--color-interactive-primary);
+  }
+
+  /* Brand inverted variant */
+  .link-brand-inverted {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-inverted);
+    text-decoration: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link-brand-inverted {
+      transition: var(--transition-colors);
+    }
+  }
+
+  .link-brand-inverted:hover,
+  .link-brand-inverted:focus {
+    color: var(--color-interactive-secondary);
+  }
+
+  /* Card link - makes entire card clickable */
+  .link-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  /* Back/Arrow link - for navigation with arrow prefix */
+  .link-back {
+    color: var(--color-interactive-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link-back {
+      transition: var(--transition-colors);
+    }
+  }
+
+  .link-back:hover,
+  .link-back:focus {
+    color: var(--color-interactive-primary-hover);
+    text-decoration: underline;
+  }
+
+  /* CTA/Primary action link */
+  .link-cta {
+    color: var(--color-interactive-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .link-cta {
+      transition: var(--transition-colors);
+    }
+  }
+
+  .link-cta:hover,
+  .link-cta:focus {
+    color: var(--color-interactive-primary-hover);
+    text-decoration: underline;
+  }
+
+  /* External link indicator (optional class) */
+  .link-external::after {
+    content: " ↗";
+    font-size: 0.8em;
+  }
+
   /* Container utility */
   .container {
     width: 100%;
