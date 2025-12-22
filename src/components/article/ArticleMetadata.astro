@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '@/utils';
+
+export interface Props {
+  article: CollectionEntry<'articles'>;
+  showDescription?: boolean | undefined;
+}
+
+const { article, showDescription = false } = Astro.props;
+---
+
+<div class="article-metadata">
+  <time datetime={article.data.date.toISOString()}>
+    {formatDate(article.data.date)}
+  </time>
+  <span class="separator">•</span>
+  <span class="author">{article.data.author}</span>
+  {
+    article.data.draft && (
+      <>
+        <span class="separator">•</span>
+        <span class="draft-badge">Draft</span>
+      </>
+    )
+  }
+</div>
+{
+  showDescription && article.data.description && (
+    <p class="description">{article.data.description}</p>
+  )
+}
+
+<style>
+  .article-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .separator {
+    color: #ccc;
+  }
+
+  .author {
+    font-weight: 500;
+  }
+
+  .draft-badge {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .description {
+    color: #666;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+
+  time {
+    color: #888;
+  }
+</style>

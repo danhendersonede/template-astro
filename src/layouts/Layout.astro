@@ -5,11 +5,23 @@ import SkipLink from '@/components/SkipLink.astro';
 export interface Props {
   title?: string;
   description?: string;
+  frontmatter?: {
+    pageTitle?: string;
+    title?: string;
+    description?: string;
+    [key: string]: any;
+  };
 }
 
-const { title, description } = Astro.props;
-const pageTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
-const pageDescription = description || siteConfig.description;
+const { title, description, frontmatter } = Astro.props;
+
+// Support both direct props and frontmatter object
+const pageTitle =
+  frontmatter?.pageTitle || frontmatter?.title || title
+    ? `${frontmatter?.title || title} | ${siteConfig.name}`
+    : siteConfig.title;
+const pageDescription =
+  frontmatter?.description || description || siteConfig.description;
 ---
 
 <!doctype html>
@@ -28,15 +40,9 @@ const pageDescription = description || siteConfig.description;
   </head>
   <body>
     <SkipLink />
-    <header role="banner">
-      <slot name="header" />
-    </header>
     <main id="main-content" role="main">
       <slot />
     </main>
-    <footer role="contentinfo">
-      <slot name="footer" />
-    </footer>
   </body>
 </html>
 

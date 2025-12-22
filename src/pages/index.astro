@@ -1,14 +1,99 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '@/layouts/Layout.astro';
 import StructuredData from '@/components/StructuredData.astro';
+import ArticleCard from '@/components/article/ArticleCard.astro';
 import { siteConfig } from '@/config/site';
+import { getPublishedArticles } from '@/utils';
+
+const allArticles = await getCollection('articles');
+const articles = getPublishedArticles(allArticles).slice(0, 3);
 ---
 
 <Layout>
   <StructuredData slot="head" type="website" />
-  <h1>Welcome to {siteConfig.name}</h1>
-  <p>{siteConfig.description}</p>
-  <div class="cta">
-    <a href="/about" class="button">Get Started</a>
+  <div class="homepage">
+    <section class="hero">
+      <h1 class="hero-title">Welcome to {siteConfig.name}</h1>
+      <p class="hero-description">{siteConfig.description}</p>
+    </section>
+
+    {
+      articles.length > 0 && (
+        <section class="recent-articles">
+          <div class="section-header">
+            <h2>Recent Articles</h2>
+            <a href="/articles">All articles</a>
+          </div>
+          <div class="articles-grid">
+            {articles.map(article => (
+              <ArticleCard article={article} />
+            ))}
+          </div>
+        </section>
+      )
+    }
   </div>
 </Layout>
+
+<style>
+  .homepage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .recent-articles {
+    margin-bottom: 4rem;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

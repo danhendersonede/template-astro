@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ArticleMetadata from './ArticleMetadata.astro';
+
+export interface Props {
+  article: CollectionEntry<'articles'>;
+}
+
+const { article } = Astro.props;
+const href = `/article/${article.id}`;
+---
+
+<article class="article-card">
+  <a href={href} class="card-link">
+    {
+      article.data.coverImage && (
+        <img
+          src={article.data.coverImage}
+          alt={article.data.title}
+          class="cover-image"
+          loading="lazy"
+        />
+      )
+    }
+    <div class="card-content">
+      <h2 class="title">{article.data.title}</h2>
+      <ArticleMetadata article={article} showDescription={true} />
+      <span class="read-more">Read more →</span>
+    </div>
+  </a>
+</article>
+
+<style>
+  .article-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    background: white;
+  }
+
+  .article-card:hover,
+  .article-card:focus-within {
+    border-color: #4f46e5;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+  }
+
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .cover-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  .title {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.3;
+  }
+
+  .card-link:hover .title {
+    color: #4f46e5;
+  }
+
+  .read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #4f46e5;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .card-link:hover .read-more {
+    text-decoration: underline;
+  }
+</style>
