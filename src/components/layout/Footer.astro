@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '@/config/site';
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
   showSocial?: boolean;
@@ -19,12 +20,12 @@ const socialLinks = [
   siteConfig.social.github && {
     name: 'GitHub',
     url: `https://github.com/${siteConfig.social.github}`,
-    icon: 'github',
+    icon: 'lucide:github',
   },
   siteConfig.social.linkedin && {
     name: 'LinkedIn',
     url: `https://linkedin.com/in/${siteConfig.social.linkedin}`,
-    icon: 'linkedin',
+    icon: 'lucide:linkedin',
   },
 ].filter((link): link is SocialLink => Boolean(link));
 ---
@@ -75,7 +76,8 @@ const socialLinks = [
                     rel="noopener noreferrer"
                     aria-label={`Visit our ${link.name}`}
                   >
-                    {link.name}
+                    <Icon name={link.icon} size={20} aria-hidden="true" />
+                    <span>{link.name}</span>
                   </a>
                 </li>
               ))}
