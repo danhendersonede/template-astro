@@ -5,8 +5,7 @@
  * Applied to :root by default.
  */
 
-@layer theme {
-  :root {
+:root {
   /* ========================================
    * BACKGROUNDS
    * ======================================== */
@@ -68,5 +67,4 @@
    * FOCUS RING
    * ======================================== */
   --focus-ring-color: var(--color-primary-600);
-  }
 }

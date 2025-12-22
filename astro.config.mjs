@@ -10,4 +10,12 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: 'hover',
   },
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    },
+  },
 });

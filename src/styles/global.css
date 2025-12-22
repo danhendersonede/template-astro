@@ -306,3 +306,13 @@
 }
 
 /* End of @layer utilities */
+
+/* ========================================
+ * SHIKI DUAL THEME SUPPORT
+ * Switch between light and dark syntax highlighting
+ * Docs: https://docs.astro.build/en/guides/syntax-highlighting/
+ * ======================================== */
+
+[data-theme='light'] .astro-code {
+  background-color: var(--color-neutral-400)
+}
