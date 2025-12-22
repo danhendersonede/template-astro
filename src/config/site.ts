@@ -28,10 +28,10 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   // 📝 Update with your project name (appears in page titles, footer, etc.)
-  name: 'My Astro Project',
+  name: 'My Project',
 
   // 📝 Main site title (used for homepage and meta tags)
-  title: 'My Astro Project',
+  title: 'My Project',
 
   // 📝 Brief description for SEO and social sharing
   description:
@@ -45,14 +45,13 @@ export const siteConfig: SiteConfig = {
 
   // 📱 Social media handles (uncomment and update as needed)
   social: {
-    // github: 'yourusername',
-    // linkedin: 'yourprofile',
+    github: 'github-username',
+    linkedin: 'linkedin-username',
   },
 
   // 🧭 Main navigation menu
   nav: [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    // Add more navigation items as needed
+    { label: 'Articles', href: '/articles' },
   ],
 };
