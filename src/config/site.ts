@@ -45,8 +45,8 @@ export const siteConfig: SiteConfig = {
 
   // 📱 Social media handles (uncomment and update as needed)
   social: {
-    // github: 'yourusername',
-    // linkedin: 'yourprofile',
+    github: 'github-username',
+    linkedin: 'linkedin-username',
   },
 
   // 🧭 Main navigation menu
