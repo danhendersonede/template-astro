@@ -44,9 +44,9 @@
     /* ========================================
      * INTERACTIVE
      * ======================================== */
-    --color-interactive-primary: var(--color-primary-500);
-    --color-interactive-primary-hover: var(--color-primary-400);
-    --color-interactive-secondary: var(--color-primary-400);
+    --color-interactive-primary: var(--color-primary-300);
+    --color-interactive-primary-hover: var(--color-primary-200);
+    --color-interactive-secondary: var(--color-primary-300);
     --color-interactive-secondary-hover: var(--color-primary-300);
 
     /* ========================================
