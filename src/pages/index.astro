@@ -37,12 +37,6 @@ const articles = getPublishedArticles(allArticles).slice(0, 3);
 </Layout>
 
 <style>
-  .homepage {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-  }
-
   .hero {
     text-align: center;
     padding: 4rem 1rem;
@@ -50,7 +44,7 @@ const articles = getPublishedArticles(allArticles).slice(0, 3);
   }
 
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color: #111827;
     margin: 0 0 1rem 0;
@@ -87,7 +81,7 @@ const articles = getPublishedArticles(allArticles).slice(0, 3);
 
   .articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 2rem;
   }
 
